@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* POINT1: hover widht transition */
+/* POINT1: hover width transition */
 /* POINT2: .active 오른쪽 테두리 궁글게 표현하기 */
 * {
   margin: 0;
@@ -27,12 +27,12 @@ body {
   /* # point: border 지정으로 일정한 간격 유지 */
   overflow: hidden;
   transition: width 0.5s;
-  /* POINT1: hover widht transition */
+  /* POINT1: hover width transition */
 }
 
 .navigation:hover {
   width: 300px;
-  /* POINT1: hover widht transition */
+  /* POINT1: hover width transition */
 }
 
 .navigation ul {
@@ -63,8 +63,9 @@ body {
   display: flex;
   text-decoration: none;
   /* line-height: 70px; */
-  /* # point: .icon, .title line-height가 다른다.*/
+  /* # point: .icon, .title line-height가 다르다.*/
   color: #fff;
+  /* border: blue 1px solid; */
 }
 
 .navigation ul li.active a::before {
@@ -78,7 +79,8 @@ body {
   border-radius: 50%;
   /* background: #f00; */
   box-shadow: 15px 15px 0 #4187f6;
-  /* POINT2: .active 오른쪽 테두리 궁글게 표현하기 */
+  /* POINT2: .active 오른쪽 테두리 궁글게 표현하기
+  - background: #f00 제거로 원리 확인해볼 수 있다. */
 }
 .navigation ul li.active a::after {
   content: '';
@@ -91,6 +93,8 @@ body {
   border-radius: 50%;
   /* background: #f00; */
   box-shadow: 15px -15px 0 #4187f6;
+  /* POINT2: .active 오른쪽 테두리 궁글게 표현하기
+  - background: #f00 제거로 원리 확인해볼 수 있다. */
 }
 
 .navigation ul li a .icon {
