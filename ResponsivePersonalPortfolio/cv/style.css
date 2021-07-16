@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* 
+  font-awesome - cdn: https://cdnjs.com/libraries/font-awesome/4.7.0
+  font-awesome - 검색: https://fontawesome.com/v4.7/icons/
+
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sansserif;
+}
+
+:root{
+  --black: #333;
+  --black2: #333;
+  --white: #fff;
+  --white2: #fff;
+}
+
+
+.mainWebSite{
+  margin: 20px 0;
+  color: #111;
+  text-decoration: none;
+}
