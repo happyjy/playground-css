@@ -280,7 +280,7 @@
           </div>
         </div>
       </section>
-      
+
       <!-- copyright Text -->
       <div class="copyright">
         <p>Copyright</p>
@@ -296,8 +296,22 @@
     $toggle.onclick = function () {
       $toggle.classList.toggle('active');
       $topbar.classList.toggle('active');
+      $navigation.classList.toggle('active');
       $main.classList.toggle('active');
     };
+
+
+    // $navigation.onclick = function () {
+    //   toggleMenu();
+    // }
+    // // fix menu active class issue for mobile devices
+    // function toggleMenu() {
+    //   debugger;
+    //   let $navigation = document.querySelector('.navigation');
+    //   let $main = document.querySelector('.main');
+    //   $navigation.classList.remove('active');
+    //   $main.classList.remove('active');
+    // }
   </script>
 </body>
 

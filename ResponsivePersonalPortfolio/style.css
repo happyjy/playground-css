@@ -3,8 +3,15 @@
   font-awesome - cdn: https://cdnjs.com/libraries/font-awesome/4.7.0
   font-awesome - 검색: https://fontawesome.com/v4.7/icons/
 
-  https://youtu.be/FJjLXEDWKMg?t=1783
-  48:43/1:15:19
+  1. responsive Personal Portfolio
+    https://youtu.be/FJjLXEDWKMg?t=1783
+    48:43/1:15:19
+
+  2. dark mode
+    https://www.youtube.com/watch?v=coVtdZRoAFc&t=0s
+
+  3. How to Create Responsive Resume Website using HTML and CSS | Resume CV design in HTML CSS
+    https://www.youtube.com/watch?v=hnjHCmaUVPg
 */
 
 * {
@@ -281,7 +288,6 @@ p {
 /* point: .textBox, .imgBx이 width를 이용 화면의 절반씩 차지하게 하는 방법 2 */
 /* [!] flex item 요소설정을 통해서 설정할 수는 없는지 확인해보기 */
 .about .content .textBox {
-  /* border: 1px red solid; */
   /* [?]: flex의 item부분의 가로 부분을 적용하려면 min-width를 적용해야한다. 왜일까? */
   /* point: */
   width: 49%;
@@ -349,8 +355,6 @@ p {
   grid-gap: 20px;
   margin: 40px 0px;
   width: 100%;
-
-
 }
 
 .project .content .workBx {
@@ -523,12 +527,12 @@ p {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.contact .contactForm .row2 textarea{
+.contact .contactForm .row2 textarea {
   resize: none;
   height: 200px;
 }
 
-.contact .contactForm .row2 input[type="submit"]{
+.contact .contactForm .row2 input[type="submit"] {
   background: var(--black2);
   color: #fff;
   padding: 10px 30px;
@@ -540,9 +544,113 @@ p {
   border: none;
 }
 
-.copyright{
+.copyright {
   position: relative;
   bottom: 0;
   /* padding: 10px 40px; */
   text-align: center;
+}
+
+
+/* responsive */
+@media (max-width:992px) {
+  .navigation {
+    left: -100%;
+    /* z-index: 100000; */
+  }
+
+  .navigation.active {
+    left: 0;
+    width: 100%;
+    /* z-index: 1000; */
+  }
+
+  .main {
+    left: 0;
+    width: 100%;
+  }
+
+  .main.active {
+    left: 100%;
+  }
+
+  .main .topbar {
+    left: 0;
+    width: 100%;
+  }
+
+  .navigation ul {
+    padding: 20px, 20px;
+  }
+
+  .banner .imgBx {
+    width: 250px;
+    height: 250px;
+  }
+
+  /* point: 글자 길이가 viewport보다 작을 때 줄 바꿈된 문자 가운데 정렬  */
+  .banner .h3,
+  .banner p {
+    text-align: center;
+  }
+
+  .adjust {
+    padding: 0 20px;
+    padding-top: 80px;
+  }
+  
+  /* 
+    # about
+  */
+  .about .content {
+    flex-direction: column;
+  }
+  .about .content .textBox{
+    width: 100%;
+    min-width: 100%;
+  }
+  .about .content .imgBx {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  /* 
+    # services
+  */
+  .services .content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* 
+    # project
+  */
+  .project .content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+    /* 
+    # services
+  */
+  .services .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  /* 
+    # project
+  */
+  .project .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  /* 
+    # testionials
+  */
+  .testionials .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .contact .contactForm .row {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .contact{
+    margin-bottom: 40px;
+  }  
 }
