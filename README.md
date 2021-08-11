@@ -7,6 +7,9 @@
     * 기능
         * 반응형 햄버거 아이콘 클릭시 메뉴 전환
 
+* [ ][23:00 Part 2 : How To Make Dark Mode Websites using Html CSS & Javascript | Dark Mode Portfolio Website Design](https://www.youtube.com/watch?v=coVtdZRoAFc&t=0s)
+    * Dark mode
+
 * [35:22 - How to Create Responsive Resume Website using HTML and CSS | Resume CV design in HTML CSS](https://www.youtube.com/watch?v=hnjHCmaUVPg)
 
 * [1:07:50 - Responsive Admin Dashboard using Html CSS & Javascript | CSS Admin Template](https://www.youtube.com/watch?v=gdA1G5h-D80)
