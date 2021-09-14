@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, user-scalable=no"
+    />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <h1>DOM touchmove Event</h1>
+    <p ontouchmove="myFunction(event)">
+      Touch this paragraph, and move the finger to trigger a function that will
+      display the x and y coordinates of the touch, according the the document:
+    </p>
+    <p><strong>Note:</strong> This example is for touch devices only.</p>
+    <p id="demo"></p>
+
+    <div class="containerCenter">
+      <div class="container">
+        <div id="nth1" class="item"></div>
+        <div id="nth2" class="item" id="delBtn">
+          <div id="edit">edit</div>
+          <div id="del">del</div>
+        </div>
+      </div>
+    </div>
+    <p id="demo1"></p>
+
+    <script>
+      function myFunction(event) {
+        var x = event.touches[0].clientX;
+        var y = event.touches[0].clientY;
+        document.getElementById('demo').innerHTML = x + ', ' + y;
+      }
+      const container = document.querySelector('.container');
+      console.log('# container: ', container.ontouchmove);
+
+      let touchStartX;
+      let touchEndX;
+      let fitDelBtnTranslateX;
+      let fitDelBtn = false;
+      let Nth1TranslateX = 0;
+      const nth1 = document.querySelector('#nth1');
+      const nth2 = document.querySelector('#nth2');
+      let moveDistance;
+
+      container.ontouchmove = function (e) {
+        var x = event.touches[0].clientX;
+        var y = event.touches[0].clientY;
+
+        // fitDelBtn
+        // nth1 TranslateX 위치에서 touchmove 이동한 길이(touchStartX - x)만큼 뺀다.
+        moveDistance = touchStartX - x - Nth1TranslateX;
+        document.getElementById('demo1').innerHTML = `
+        # x: ${x},
+        # y: ${y},
+        # firstTouchX: ${touchStartX},
+        # moveDistance: ${moveDistance}
+    `;
+        if (moveDistance < 200) {
+          nth1.style.cssText = `transform: translateX(-${moveDistance}px)`;
+        }
+        if (moveDistance > 50) {
+          nth2.style.cssText = `opacity: 1;`;
+          fitDelBtnTranslateX = 100;
+        } else {
+          touchEndX = x; // touchend x 위치
+        }
+      };
+
+      container.ontouchstart = function (e) {
+        touchStartX = e.touches[0].clientX;
+        Nth1TranslateX = getTranslateX(nth1);
+        nth1.style.cssText = `transition: 0.5s`;
+      };
+      container.ontouchend = function (e) {
+        touchStartX = 0;
+        if (moveDistance >= 50) {
+          fitDelBtn = true; // delbtn이 보인느 자리에 위치 할때
+          console.log({ fitDelBtn });
+        }
+
+        if (fitDelBtn) {
+          nth1.style.cssText = `transition: transform 0.5s; transform: translateX(-${fitDelBtnTranslateX}px)`;
+        } else {
+          nth1.style.cssText = `transition: transform 0.5s; transform: translateX(0px)`;
+        }
+      };
+
+      const getTranslateX = (el) => {
+        var style = window.getComputedStyle(el);
+        var matrix = new WebKitCSSMatrix(style.transform);
+        return matrix.m41;
+      };
+
+      // container.onclick = function(e){
+      //   debugger;
+      //   alert("## click: ", nth1.style.transform)
+      //   console.log(e)
+      // }
+    </script>
+  </body>
+</html>

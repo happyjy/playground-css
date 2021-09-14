@@ -79,8 +79,8 @@ section::after{
   width: 100%;
   margin-top: 40px;
   border-spacing: 5px;
-  /* point4: border-spacing: ; 
-  - 가로로 늘여져 있는 table tr td 요소들 사이 border가 띄워져 있다. 
+  /* point4: border-spacing: ;
+  - 가로로 늘여져 있는 table tr td 요소들 사이 border가 띄워져 있다.
   - td selectotr에 border-spacing적용 안된다
     (#dycalendar table tr:nth-child(1) td)*/
 }
@@ -108,14 +108,14 @@ section::after{
 
 /* point5: dycaldendar lib css customize
   - 변경하고 싶은 요소를 선택해서 styles에 css selector를 가지고 와서 변경 */
-.dycalendar-month-container .dycalendar-today-date, 
+.dycalendar-month-container .dycalendar-today-date,
 .dycalendar-month-container .dycalendar-target-date {
   background: #fff !important;
   color: #111 !important
 }
 
-.dycalendar-month-container 
-.dycalendar-header 
+.dycalendar-month-container
+.dycalendar-header
 .dycalendar-prev-next-btn.prev-btn{
   background: #fff;
   color: #111;
@@ -129,8 +129,8 @@ section::after{
   align-items: center;
   font-size: 24px;
 }
-.dycalendar-month-container 
-.dycalendar-header 
+.dycalendar-month-container
+.dycalendar-header
 .dycalendar-prev-next-btn.next-btn{
   background: #fff;
   color: #111;

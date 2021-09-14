@@ -1,0 +1,53 @@
+.containerCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.containerCenter{
+  background: orange;
+  width: 300px;
+}
+.container{
+  border: 3px black solid;
+  display: flex;
+  height: 50px;
+  width: 300px;
+  position: relative;
+/*   overflow: hidden; */
+}
+
+.item{
+
+}
+
+#nth1{
+  background: midnightblue;
+  width: 300px;
+
+  z-index: 10;
+}
+#nth2{
+  background: yellow;
+  width: 100px;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  display: flex;
+  z-index: 10;
+
+  opacity: 0;
+  transition: 1s;
+}
+#nth2 #edit{
+  background: mediumseagreen;
+  width: 50%;
+}
+#nth2 #del{
+  background: mediumvioletred;
+  width: 50%;
+}
+
+/*   transform: translateX(-50px); */
+/*   transition: transform 1s; */
