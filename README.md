@@ -1,5 +1,11 @@
 # PLAYGROUND-CSS
 
+* [x] swiper
+    * 직접 구현
+    * touch Event(ontouchstart, ontouchend, ontouchmove) 이벤트 사용
+    * 모바일에서만 사용가능
+    * 크롬 device tool에서 테스트 가능
+
 * [x][Dynamic Calendar](https://www.youtube.com/watch?v=0LnecKau04Y&t=144)
 
 * [x][Navigation menu](https://www.youtube.com/watch?v=pubrK_AmqRg)
