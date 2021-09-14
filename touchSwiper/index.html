@@ -48,62 +48,109 @@
       const container = document.querySelector('.container');
       console.log('# container: ', container.ontouchmove);
 
-      let touchStartX;
+      let firstTouchX;
+      let lastTouchX;
       let touchEndX;
       let fitDelBtnTranslateX;
       let fitDelBtn = false;
-      let Nth1TranslateX = 0;
+      let nth1TranslateX = 0;
+      let direction;
       const nth1 = document.querySelector('#nth1');
       const nth2 = document.querySelector('#nth2');
-      let moveDistance;
 
       container.ontouchmove = function (e) {
-        var x = event.touches[0].clientX;
-        var y = event.touches[0].clientY;
+        let currX = event.touches[0].clientX;
+        let currY = event.touches[0].clientY;
 
-        // fitDelBtn
-        // nth1 TranslateX 위치에서 touchmove 이동한 길이(touchStartX - x)만큼 뺀다.
-        moveDistance = touchStartX - x - Nth1TranslateX;
+        moveDistance = firstTouchX - currX;
+        nth1TranslateX = moveDistance - Nth1TranslateX;
+
         document.getElementById('demo1').innerHTML = `
-        # x: ${x},
-        # y: ${y},
-        # firstTouchX: ${touchStartX},
-        # moveDistance: ${moveDistance}
-    `;
-        if (moveDistance < 200) {
-          nth1.style.cssText = `transform: translateX(-${moveDistance}px)`;
-        }
-        if (moveDistance > 50) {
-          nth2.style.cssText = `opacity: 1;`;
-          fitDelBtnTranslateX = 100;
+          # x: ${currX},
+          # firstTouchX: ${firstTouchX},
+          # moveDistance: ${moveDistance}
+          # nth1TranslateX: ${nth1TranslateX}
+      `;
+
+        if (firstTouchX > currX) {
+          // left
+          direction = 'left';
+          // nth1 TranslateX 위치에서 touchmove 이동한 길이(firstTouchX - x)만큼 뺀다.
+          if (nth1TranslateX < 200) {
+            nth1.style.cssText = `transform: translateX(-${nth1TranslateX}px)`;
+          }
+          if (nth1TranslateX > 50) {
+            nth2.style.cssText = `opacity: 1;`;
+            fitDelBtnTranslateX = 100;
+          } else {
+            touchEndX = currX; // touchend x 위치
+          }
         } else {
-          touchEndX = x; // touchend x 위치
+          //right
+          direction = 'right';
+
+          if (nth1TranslateX >= 0) {
+            nth1.style.cssText = `transform: translateX(-${nth1TranslateX}px)`;
+          }
+          if (nth1TranslateX < 50) {
+            nth2.style.cssText = `opacity: 0;`;
+            // fitDelBtnTranslateX = 100;
+          } else {
+            touchEndX = currX; // touchend x 위치
+          }
         }
+        lastTouchX = currX;
       };
 
+      /*
+          # ontouchstart, ontouchend
+        */
       container.ontouchstart = function (e) {
-        touchStartX = e.touches[0].clientX;
+        firstTouchX = e.touches[0].clientX;
         Nth1TranslateX = getTranslateX(nth1);
-        nth1.style.cssText = `transition: 0.5s`;
+        nth1.style.transition = `0.5s`;
       };
       container.ontouchend = function (e) {
-        touchStartX = 0;
-        if (moveDistance >= 50) {
-          fitDelBtn = true; // delbtn이 보인느 자리에 위치 할때
-          console.log({ fitDelBtn });
+        firstTouchX = 0;
+        const touchendNth1TranslateX = getTranslateX(nth1);
+        if (touchendNth1TranslateX > -50) {
+          // nth1.style.transform = 'translateX(0px)';
+          nth1.style.cssText = `transition: transform 0.5s; transform: translateX(0px)`;
+        } else {
+          nth1.style.cssText = `transition: transform 0.5s; transform: translateX(-100px)`;
+          // nth1.style.transform = 'translateX(-100px)';
         }
 
-        if (fitDelBtn) {
-          nth1.style.cssText = `transition: transform 0.5s; transform: translateX(-${fitDelBtnTranslateX}px)`;
-        } else {
-          nth1.style.cssText = `transition: transform 0.5s; transform: translateX(0px)`;
-        }
+        // if (direction === 'left') {
+        //   const touchendNth1TranslateX = getTranslateX(nth1);
+        //   if (touchendNth1TranslateX > -50) {
+        //     // nth1.style.transform = 'translateX(0px)';
+        //     nth1.style.cssText = `transition: transform 0.5s; transform: translateX(0px)`;
+        //   } else {
+        //     nth1.style.cssText = `transition: transform 0.5s; transform: translateX(-100px)`;
+        //     // nth1.style.transform = 'translateX(-100px)';
+        //   }
+        // } else {
+        //   //right
+        //   const touchendNth1TranslateX = getTranslateX(nth1);
+        //   if (touchendNth1TranslateX > -50) {
+        //     nth1.style.cssText = `transition: transform 0.5s; transform: translateX(0px)`;
+        //     // nth1.style.transform = 'translateX(0px)';
+        //   } else {
+        //     nth1.style.cssText = `transition: transform 0.5s; transform: translateX(-100px)`;
+        //     // nth1.style.transform = 'translateX(-100px)';
+        //   }
+        // }
       };
 
       const getTranslateX = (el) => {
         var style = window.getComputedStyle(el);
         var matrix = new WebKitCSSMatrix(style.transform);
         return matrix.m41;
+      };
+
+      const getDirection = (dir1, dir2) => {
+        return dir1 - dir2;
       };
 
       // container.onclick = function(e){
