@@ -1,0 +1,85 @@
+/* XEICON CDN  */
+@import url('http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css');
+
+/* Google Web Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  line-height: 1.6em;
+  font-size: 26px;
+}
+body.active {
+  overflow: hidden;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Section : FAQ */
+.faq {
+  padding: 80px 0;
+}
+.faq-inner {
+  width: 850px;
+  margin: auto;
+}
+.faq-inner h1 {
+  text-align: center;
+  font-size: 50px;
+}
+input[name='faq-item'] {
+  display: none;
+}
+/* .accordion label {} */
+input[name='faq-item'] + label {
+  display: block;
+  background-color: #303030;
+  padding: 15px;
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+.faq-content {
+  background-color: #303030;
+  padding: 0;
+  margin-bottom: 10px;
+  /* display: none; */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+input[name='faq-item'] + label span {
+  float: right;
+  font-size: 36px;
+  transition: 0.35s;
+}
+aside {
+  text-align: center;
+}
+aside p {
+  font-size: 24px;
+}
+
+/* Checked Function */
+/*
+  #point: 꼭 하나만 레이어가 나오는 방법 "input type radio 사용"
+    * 전체 레이어를 닫고 클릭 한것만 레이어를 열게 하는 방법을 사용하지 않았다.
+    * css selector를 사용 input checked가 됐을때 높이를 주면 된다.
+
+ */
+input[name='faq-item']:checked + label + .faq-content {
+  /* display: block; */
+  max-height: 500px;
+  padding: 15px;
+}
+input[name='faq-item']:checked + label span {
+  transform: rotate(45deg);
+}
