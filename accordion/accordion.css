@@ -13,6 +13,11 @@ body {
   background-color: #000;
   color: #fff;
   margin: 0;
+  /*
+    # point: line-height
+      * body에 설정하면 하위에 있는 모든 dom에 text가 있는 곳에서 height가 설정된다.
+      * 문자가 있는 dom에 하나씩 height를 설정하는 것보 통일성을 줄때 효율적으로 보인다.
+  */
   line-height: 1.6em;
   font-size: 26px;
 }
@@ -24,10 +29,17 @@ a {
   color: #fff;
 }
 
-/* Section : FAQ */
-.faq {
-  padding: 80px 0;
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Section : FAQ */
+/* .faq {
+  padding: 80px 0;
+} */
 .faq-inner {
   width: 850px;
   margin: auto;
