@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #252839;
+}
+ul {
+  /* border: 1px solid white;
+  overflow: auto; */
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+ul li {
+  position: relative;
+  list-style: none;
+}
+ul li a {
+  position: relative;
+  font-size: 4em;
+  text-decoration: none; /* point: a태그 underline제거 */
+  color: transparent;
+  letter-spacing: 2px;
+  line-height: 1em;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+}
+ul li a::before {
+  border: 1px solid;
+  content: attr(data-text);
+  /* # point: "position: absolute; "만 해줘도 "left:0"이 기본으로 설정 */
+  position: absolute;
+  /* left: 0; */
+
+  /* # point: var(--clr)  html에 inline style로 정한 css를 css에서 사용하는 방법 */
+  color: var(--clr);
+  width: 0%;
+  /* # point: overflow hidden으로 인해서 a태그 before에 있던 글자가 숨겨진다. */
+  overflow: hidden;
+  border-right: 8px solid var(--clr);
+  transition: 1s;
+  -webkit-text-stroke: 1px var(--clr);
+}
+ul li a:hover:before {
+  width: 100%;
+  /* # point: hover시 neon sign 효과 */
+  filter: drop-shadow(0 0 25px var(--clr));
+}
