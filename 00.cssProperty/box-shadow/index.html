@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* 
+        # todo - 아래 두개 구분이 정확하게 뭘까? 
+            * blur-radius | spread-radius
+    */
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 50px;
+      height: 100vh;
+      width: 100vw;
+    }
+    .box {
+      width: 120px;
+      height: 50px;
+      background-color: bisque;
+      /* box-shadow: 60px -16px teal; */
+    }
+
+    .shadow1 {
+      /* offset-x | offset-y | color */
+      box-shadow: 60px -16px teal;
+    }
+    .shadow2 {
+      /* offset-x | offset-y | blur-radius | color */
+      box-shadow: 10px 5px 5px black;
+    }
+    .shadow3 {
+      /* offset-x | offset-y | blur-radius | spread-radius | color */
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    .shadow4 {
+      /* inset | offset-x | offset-y | color */
+      box-shadow: inset 5em 1em gold;
+    }
+    .shadow5 {
+      /* Any number of shadows, separated by commas */
+      box-shadow: 3px 3px red, -1em 0 0.4em olive;
+    }
+
+    /* prettier-ignore */
+    .shadow6 {
+      border-radius: 10px;
+      box-shadow:
+        0 15px 10px #ccc,
+        0 15px 30px rgba(0, 0, 0, 0.25),
+        0 8px 0 rgba(0, 0, 0, 0.1),
+        0 40px 60px rgba(0, 0, 0, 0.1);
+        /*
+            * rgba 4번째 설정 value
+                - rgba(0, 0, 0, 1); - 검정색
+                - rgba(0, 0, 0, 0); - 흰색
+        */
+    }
+    .shadow7 {
+    }
+    .shadow8 {
+    }
+    .shadow9 {
+    }
+    .shadow10 {
+    }
+    .shadow11 {
+    }
+    .shadow12 {
+    }
+    .shadow13 {
+    }
+    .shadow14 {
+    }
+    .shadow15 {
+    }
+  </style>
+  <body>
+    <!-- div.box.shadow$*5 -->
+    <div class="box shadow1"></div>
+    <div class="box shadow2"></div>
+    <div class="box shadow3"></div>
+    <div class="box shadow4"></div>
+    <div class="box shadow5"></div>
+
+    <div class="box shadow6"></div>
+    <div class="box shadow7"></div>
+    <div class="box shadow8"></div>
+    <div class="box shadow9"></div>
+    <div class="box shadow10"></div>
+
+    <div class="box shadow11"></div>
+    <div class="box shadow12"></div>
+    <div class="box shadow13"></div>
+    <div class="box shadow14"></div>
+    <div class="box shadow15"></div>
+  </body>
+</html>
+
+<!-- 
+/* offset-x | offset-y | color */
+box-shadow: 60px -16px teal;
+
+/* offset-x | offset-y | blur-radius | color */
+box-shadow: 10px 5px 5px black;
+
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+/* inset | offset-x | offset-y | color */
+box-shadow: inset 5em 1em gold;
+
+/* Any number of shadows, separated by commas */
+box-shadow: 3px 3px red, -1em 0 0.4em olive;
+
+/* Global keywords */
+box-shadow: inherit;
+box-shadow: initial;
+box-shadow: unset; -->
