@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f8f8f8;
+  /* background: radial-gradient(#555,#292929); */
+}
+.safari {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  border-radius: 80px;
+  /* 
+    # todo - box shadow
+      * live로 만들 수 있는 사이트 있나 찾아 보기 
+    # need to deep dive
+    # cssProperty > box-shadow folder참고
+
+    # point - level1 - box-shadow
+      - 한번에 여러 box-shadow속성을 적용할 수 있으며
+      - 우선순위는 먼저 작석한 속성일 수록 위로 적용 된다.
+  */
+  /* prettier-ignore */
+  box-shadow:
+    0 30px 10px #ccc,
+    0 30px 30px rgba(0, 0, 0, 0.25),
+    0 28px 0 rgba(0, 0, 0, 0.5),
+    0 50px 60px rgba(0, 0, 0, 0.1);
+
+  /* 
+    아래 4개의 box-shadow는 각 속성이 어떻게 보이는지 확인 코드 
+      - 동시 적용 안됨.(하나만 적용 됨)
+  */
+  /* box-shadow: 0 30px 10px #ccc; */
+  /* box-shadow: 0 30px 30px rgba(0, 0, 0, 0.25); */
+  /* box-shadow: 0 28px 0 rgba(0, 0, 0, 0.5); */
+  /* box-shadow: 0 50px 60px rgba(0, 0, 0, 0.1); */
+}
+
+.circle_lines {
+  /* border: 1px solid; */
+  /* 
+    # point - level1 - position, inset
+      * position: absolute, inset(top, bottom, left, right)를 이용해서 
+        해당 dom의 크기를 outer dom 기준으로 설정
+      * outer 길이에서 inset 길이만큼 뺀 길이가 circle_lines의 가로, 세로 길이가 된다.
+  */
+  position: absolute;
+  inset: 35px;
+  /* 
+  # point - level3 - inset: 35px 설정
+    * 아래와 같은 설정이다.
+    top: 35px;
+    bottom: 35px;
+    left: 35px;
+    right: 35px; 
+  */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(#1ec9ff, #2971e7);
+  /* 
+    # point - level3 원 위쪽 안, 밖으로 shadow 
+  */
+  box-shadow: 0 -5px 0 5px rgba(0, 0, 0, 0.15),
+    inset 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 
+  * circle_line 지름 확인 용
+*/
+.circle_lines::before {
+  content: '';
+  position: absolute;
+  border: 10px solid;
+  top: 15px;
+  /* transform: translateY(13px); */
+  /* circle lines height가 24px임 */
+}
+.circle_lines::after {
+  content: '';
+  position: absolute;
+  border: 10px solid;
+  bottom: 15px;
+}
+
+/* 
+  * 긴  초침  - .circle_lines span 
+  * 짧은 초침 - .circle_lines span::before
+*/
+/* 330px */
+.circle_lines span {
+  /* border: 3px solid red; */
+  z-index: 100;
+  position: absolute;
+  width: 2px;
+  height: 24px;
+  background: #fff;
+  /* 
+    #  원 끝에 붙는 circle_lines "transform, transform-origin"
+      transform: translateY(-153px) rotate(calc(10deg * var(--idx)));
+      transform-origin: 1px 165px;
+      
+      * 330px = circle_lines dom의 height, width
+      
+      * transform: translateY의 -153 수치
+        - (outer widht, height)/2 = 330/2 = 165
+        - 165 - (height/2) = 165-(24/2) = 153
+        - 153 - (?) = 153 - 1px = 원 끝에 붙는 translateY 수치
+      * transform-origin의 165px 수치
+        - 165 = 330 / 2
+        - outer dom의 중심에 y축으로 transform-origin으로 적용
+  */
+
+  /* 
+    # point - level3 - transform: translateY(-137.55px), roate([])
+      * ⭐️ transform: translateY(-137.55px)
+        - 원 중심에서 떨어져 있는 거리 결정 요소
+      * ⭐️ transform: rotate(calc(10deg * var(--idx)));
+        - circle line의 기울기 조절 
+        - ⭐️ y축 각도가 변경이 된다.
+  */
+  /* 
+    # point - level1 - transform-origin
+      * transform-origin: 1px 150px;
+      * 이 속성을 이용해 transform: rotate 회전시 회전의 중심 축을 설정한다.
+      * 1번째 value 
+        - 가로 길이가 2px이기 때문
+      * 2번째 value
+        - 초침이 원크기에 맞게 회전해서 맞춰지게 된다.
+      * [참고](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
+  */
+  /* transform: translateY(-137.55px) rotate(calc(10deg * var(--idx))); */
+  transform: translateY(-138px) rotate(calc(10deg * var(--idx)));
+  /* 
+    # point - transform: translateY(-138px)
+      * ⭐️ 원리 translateY(-137.55px) 이 수치였으나 
+        반지름 , circle-line 길이을 통해 구한 수치는 138px이여서 적용해보니 더 정확하다.
+      
+      * -138px 
+        = 반지름 - half of circle line
+        = 150px - 12px
+        
+      * 반지름
+        - ⭐️ transform-origin으로 정해짐
+        - transform-origin 기준으로 rotate함으로 원이 형성
+
+  */
+  transform-origin: 1px 150px;
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.15));
+
+  /* 
+    # todo - drop-shadow, box-shadow 차이는?
+  */
+}
+
+.circle_lines span::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 50%; /* = 12px */
+  background: #fff;
+  transform-origin: 0 150px;
+  /* transform-origin: 0 150px; */
+  transform: rotate(5deg);
+  /* 
+    # transform: rotate(5deg); 
+      * .circle_lines span 기준으로 더 적용 된다.
+  */
+}
+
+/* 원 중앙 */
+.circle_lines span::after {
+  content: '';
+  position: absolute;
+  border: 1px solid black;
+  top: 150px;
+  filter: none;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+.niddle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  inset: 50px;
+
+  width: 40px;
+
+  transform: translateX(130px) rotate(45deg);
+  /* transform: rotate(45deg); */
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+  transition: cubic-bezier(0.55, -0.32, 0.33, 1.38) 3s;
+}
+.safari:hover .niddle {
+  transform: translateX(130px) rotate(405deg);
+  /* transform: rotate(405deg); */
+}
+/* 
+  # point - transform:translateX 주지 않고 niddle 회전하는 애니메이션 적용하기
+    * 기존에는 niddle에 "transform: translateX(130px) rotate([]);" 적용
+    * transform: rotate 변경 + transition 변경으로 animation 적용하고 있다.
+    * 하지만
+      - transform: translateX(130px), width: 40px을 제외 해도 똑같이 동작한다.
+      - (niddle width가 넓게 설정되어도)
+*/
+/* 
+  # point - level2 - border를 통해서 삼각형 만들기 1
+    * height, top을 통해서 위치 설정
+*/
+/* niddle의 height, width은 300px */
+/* .niddle::before {
+  z-index: 100;
+  content: '';
+  position: absolute;
+  top: -150px;
+  height: 150px;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 150px solid #fb3b2e;
+} */
+/* 
+  # point - level2 - border를 통해서 삼각형 만들기 2
+    * height를 설정하지 않음
+    * 위치를 transform: translayteY로 설정
+*/
+.niddle::before {
+  z-index: 100;
+  content: '';
+  position: absolute;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 150px solid #fb3b2e;
+  transform: translateY(-50%);
+}
+
+.niddle::after {
+  content: '';
+  position: absolute;
+  top: 150px;
+  height: 150px;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 150px solid #fff;
+  z-index: 100;
+}
