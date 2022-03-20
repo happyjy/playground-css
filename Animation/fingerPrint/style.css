@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #111;
+}
+.scan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fingerprint {
+  position: relative;
+  width: 300px;
+  height: 380px;
+  background: url(fingerPrint_01.png);
+  background-size: 300px;
+}
+.fingerprint::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(fingerPrint_02.png);
+  background-size: 300px;
+  animation: animate 4s ease-in-out infinite;
+}
+/* 
+  # point - level3 - @keyframes animate & width 
+    * [0 -> 50%] height: 100%;
+    * [50% -> 100%] height: 0%;
+*/
+@keyframes animate {
+  0%,
+  100% {
+    height: 0;
+  }
+  50% {
+    height: 100%;
+  }
+}
+/* 
+    # need to deep dive
+      * filter: drop-shadow, box-shadow 차이는? 
+        * filter: drop-shadow
+          - 함수 
+          - 이미지 자체의 모양에 맞는 그림자를 생성한다.
+          - 필터는 box-model에 바인딩 되지 않는다.
+        * drop-shadow
+          - css property
+          - 전체 box 뒤에 직사각형 그림자를 생성
+
+      * 참고 
+        - [설명](https://dev.to/keshavs759/box-shadow-vs-drop-shadow-in-css-cep)
+        - [예시](https://css-tricks.com/breaking-css-box-shadow-vs-drop-shadow/)
+  */
+.fingerprint::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: #3fefef;
+  box-shadow: 0 0 25px #000;
+  filter: drop-shadow(0 0 20px #3fefef) drop-shadow(0 0 60px #3fefef);
+  background-size: 300px;
+  animation: animate_fingerprint 4s ease-in-out infinite;
+}
+@keyframes animate_fingerprint {
+  0%,
+  100% {
+    top: 0;
+  }
+  50% {
+    top: 100%;
+  }
+}
+.scan h3 {
+  font-family: consolas;
+  text-transform: uppercase;
+  font-size: 2em;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  opacity: 0;
+  color: #3fefef;
+  /* # point - filter: drop-shadow() */
+  filter: drop-shadow(0 0 20px #3fefef) drop-shadow(0 0 60px #3fefef);
+  animation: animateText 0.5s steps(1) infinite;
+}
+@keyframes animateText {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
