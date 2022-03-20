@@ -14,5 +14,9 @@
 - point - level1 - transform-origin
 - point - transform: translateY(-138px)
 - point - transform: translateX 주지 않고 niddle 회전하는 애니메이션 적용하기
-- point - level2 - border를 통해서 화살표 만들기 1
-- point - level2 - border를 통해서 화살표 만들기 2
+- point - level2 - border를 통해서 삼각형 만들기 1
+- point - level2 - border를 통해서 삼각형 만들기 2
+
+# circle line 분석
+
+![](img/2022-03-20-15-38-51.png)
