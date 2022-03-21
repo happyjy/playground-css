@@ -22,10 +22,13 @@
       width: 100vw;
     }
     .box {
+      --height: 50px;
       width: 120px;
-      height: 50px;
+      height: var(--height);
       background-color: bisque;
       /* box-shadow: 60px -16px teal; */
+      text-align: center;
+      line-height: var(--height);
     }
 
     .shadow1 {
@@ -42,7 +45,17 @@
     }
     .shadow4 {
       /* inset | offset-x | offset-y | color */
-      box-shadow: inset 5em 1em gold;
+      box-shadow: 2em 1em gold;
+    }
+    .shadow4-1 {
+      /* inset | offset-x | offset-y | color */
+      /* 1em = outer font size(default: 16px) */
+      /*
+        # point - inset 
+          * 값을 지정하지 않으면(기본값) 요소가 공중에 떠있는 것처럼 밖에 드리우는 그림자가 됩니다.
+            inset 키워드가 존재하면 요소가 움푹 들어간 것처럼 그림자가 요소의 테두리 안, 배경색 위, 내부 콘텐츠 밑에 그려집니다.
+      */
+      box-shadow: inset 2em 1em gold;
     }
     .shadow5 {
       /* Any number of shadows, separated by commas */
@@ -84,23 +97,24 @@
   </style>
   <body>
     <!-- div.box.shadow$*5 -->
-    <div class="box shadow1"></div>
-    <div class="box shadow2"></div>
-    <div class="box shadow3"></div>
-    <div class="box shadow4"></div>
-    <div class="box shadow5"></div>
+    <div class="box shadow1">1</div>
+    <div class="box shadow2">2</div>
+    <div class="box shadow3">3</div>
+    <div class="box shadow4">4</div>
+    <div class="box shadow4-1">4-1</div>
+    <div class="box shadow5">5</div>
 
-    <div class="box shadow6"></div>
-    <div class="box shadow7"></div>
-    <div class="box shadow8"></div>
-    <div class="box shadow9"></div>
-    <div class="box shadow10"></div>
+    <div class="box shadow6">6</div>
+    <!-- <div class="box shadow7">7</div>
+    <div class="box shadow8">8</div>
+    <div class="box shadow9">9</div>
+    <div class="box shadow10">10</div>
 
-    <div class="box shadow11"></div>
-    <div class="box shadow12"></div>
-    <div class="box shadow13"></div>
-    <div class="box shadow14"></div>
-    <div class="box shadow15"></div>
+    <div class="box shadow11">11</div>
+    <div class="box shadow12">12</div>
+    <div class="box shadow13">13</div>
+    <div class="box shadow14">14</div>
+    <div class="box shadow15"></div15> -->
   </body>
 </html>
 
