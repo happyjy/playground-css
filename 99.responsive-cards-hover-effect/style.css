@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #2e557c;
+  transition: 0.5s;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-color: #30bfa5;
+  transition: 0.5s;
+  clip-path: circle(250px at center);
+  /* 
+    # clip-path
+      * https://developer.mozilla.org/ko/docs/Web/CSS/clip-path
+  */
+  /* clip-path: circle(250px at 0 100px);
+  clip-path: inset(100px 50px);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: padding-box circle(50px at 0 100px); */
+}
+
+.container {
+  /* border: 1px solid; */
+  position: relative;
+  width: 1100px;
+  height: 400px;
+}
+
+.container .card {
+  /* border: 1px solid yellow; */
+  position: absolute;
+  top: calc(50% - 200px);
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  background: #fff;
+  border-radius: 10px;
+  z-index: calc((-1 * var(--i)));
+  /* 
+    # point - level1 - 뉘워진 cards 만들기
+  */
+  transform: translateX(-50%) translateY(calc(50px * var(--i))) rotate(40deg)
+    skew(-20deg, -10deg) scale(0.6);
+  box-shadow: 25px 25px 100px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .card:nth-child(2) {
+  opacity: 0.8;
+}
+.container .card:nth-child(3) {
+  opacity: 0.6;
+}
+.container:hover .card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  opacity: 1;
+  /* 
+    # point - card 흩뿌리기
+      * hover로 겹쳐진 card 흩뿌리기
+  */
+  transform: translateX(calc(-50% + calc(350px * var(--i)))) translateY(-50%)
+    rotate(0deg) skew(0deg, 0deg) scale(1);
+}
+
+.container .card .content {
+  position: relative;
+  padding: 25px;
+  color: #333;
+  /* 
+    point - opacity를 통해 글자를 숨길 수 있다.
+  */
+  opacity: 0;
+  transition: 0.5s;
+  transform: translateY(50px);
+}
+
+.container:hover .card .content {
+  opacity: 1;
+  /* 
+    point - transition-delay 사용으로 animation 순착 적용
+  */
+  transition-delay: calc(0.2s * var(--j));
+  /* 
+    point - transform: translateY(0px), translateY(50px);를 통해서 글자가 나타나는 효과를 줌.
+  */
+  transform: translateY(0px);
+}
+
+@media (max-width: 991px) {
+  body::before {
+    clip-path: circle(0px at center);
+  }
+  .container {
+    width: 100%;
+    height: initial;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .container .card {
+    position: relative;
+    top: initial;
+    left: initial;
+    transform: initial;
+    margin: 20px;
+    opacity: 1 !important;
+  }
+
+  .container:hover,
+  .container:hover .card {
+    position: relative;
+    top: initial;
+    left: initial;
+    transform: initial;
+  }
+  .container .card .content {
+    transform: initial;
+    opacity: 1;
+    overflow: hidden;
+  }
+}
